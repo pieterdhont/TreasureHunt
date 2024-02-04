@@ -32,6 +32,16 @@ function startGame() {
 
     const enemySpeed = document.getElementById('enemySpeed').value;
 
+    // Input validation
+    if (width < 5 || width > 100 || height < 5 || height > 100) {
+        alert("width and height must be between 5 and 100.");
+        return;
+    }
+    if (numWalls < 0 || numTreasures < 0 || numLives <= 0) {
+        alert("Please enter non-negative numbers for walls, treasures, and a positive number for lives.");
+        return;
+    }
+
     if (totalEntities >= totalCells) {
         alert(`Cannot start the game because the sum of walls, treasures, hunter, and enemy (${totalEntities}) ` +
               `is equal to or greater than the total size of the board (${totalCells}). ` +
