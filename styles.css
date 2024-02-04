@@ -1,0 +1,325 @@
+/*styles.css*/
+body {
+  background-color:burlywood;
+  font-family: "Space Mono", monospace;
+}
+
+#settingsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Creates three columns of equal width */
+  gap: 20px;
+  /* Adds space between the columns */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* Space before the gameboard starts */
+}
+
+.settingsColumn {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* Label width auto, input field takes the rest */
+  gap: 10px 20px;
+  /* Vertical and horizontal gaps */
+  align-items: center;
+  /* Align items in the center vertically */
+}
+
+.settingsColumn input[type="checkbox"] {
+  justify-self: start;
+}
+
+/* Add this to align labels next to the inputs for checkboxes */
+.settingsColumn label[for="autoWalls"],
+.settingsColumn label[for="autoTreasures"],
+.settingsColumn label[for="enemySpeed"] {
+  justify-self: start;
+  white-space: nowrap;
+}
+
+.form-control {
+  display: contents;
+  /* Make .form-control children part of the grid */
+}
+
+.settingsColumn h3 {
+  grid-column: 1 / 3;
+  /* Span the entire row */
+  margin-bottom: 10px;
+  margin-top: 0;
+  /* Space between the title and the inputs */
+}
+
+/* This will ensure the input fields and checkboxes have some space */
+input[type="number"],
+input[type="checkbox"],
+select {
+  grid-column: 2 / 3;
+  /* Inputs take the second column */
+  justify-self: start;
+  /* Align inputs to the start (left) */
+}
+
+#gameboard {
+  display: grid;
+  gap: 1px;
+  /* Kleine ruimte tussen de cellen */
+  margin: 20px auto;
+  /* Top and bottom margin, auto left and right for centering */
+  justify-content: center;
+  /* Center grid items horizontally */
+  align-content: center;
+  /* Center grid items vertically */
+}
+
+#statusContainer {
+  position: fixed;
+  /* Fixed positioning to keep the status in view */
+  top: 10px;
+  /* Distance from the top of the viewport */
+  right: 10px;
+  /* Distance from the left side of the viewport */
+  z-index: 10;
+  /* Ensure it's above other elements */
+}
+
+#treasure-counter,
+#lives-counter {
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  /* Semi-transparent white background */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  /* Space between counters */
+}
+
+#startButton, #pauseButton {
+  background: rgba(255, 2, 2, 0.8);
+  padding: 10px 15px;
+
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#startButton:hover, #pauseButton:hover {
+  background: rgb(54, 3, 3);
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+}
+
+.grass {
+  background-color: green;
+}
+
+.wall {
+  background-color: gray;
+}
+
+.hunter {
+  background-color: blue;
+
+  /* Voeg hier eventueel een afbeelding of andere stijlen toe */
+}
+
+.enemy {
+  background-color: red;
+
+  /* Voeg hier eventueel een afbeelding of andere stijlen toe */
+}
+
+.treasure {
+  background-color: gold;
+
+  /* Voeg hier eventueel een afbeelding of andere stijlen toe */
+}
+
+#treasure-counter {
+  margin-top: 10px;
+  /* Or any other styling you prefer */
+}
+
+@keyframes victoryAnimation {
+  0% {
+    transform: scale(1) rotateZ(0);
+  }
+
+  50% {
+    transform: scale(2) rotateZ(180deg);
+  }
+
+  100% {
+    transform: scale(1) rotateZ(360deg);
+  }
+}
+
+label {
+  grid-column: 1 / 2;
+  /* Labels take the first column */
+  justify-self: start;
+  /* Align label text to the end (right) */
+}
+
+input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  /* Adds space below each input field */
+  width: 50%;
+  /* Sets a consistent width for all inputs */
+  box-sizing: border-box;
+  /* Includes padding and border in the element's total width and height */
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: #6e9ecf;
+  box-shadow: 0 0 5px rgba(110, 158, 207, 0.5);
+}
+
+.animate__backOutDown {
+  animation-duration: 10s;
+}
+
+/* ... your existing CSS ... */
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+}
+
+/* Modal Content */
+.modal-content {
+  background: rgba(253, 252, 71, 0.5);
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(36, 254, 65, 0.7),
+    rgba(253, 252, 71, 0.7)
+  );
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    rgba(36, 254, 65, 0.7),
+    rgba(253, 252, 71, 0.7)
+  );
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+.modal-content p {
+  font-size: 25px;
+  text-align: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Collision Message */
+#collisionModal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 2;
+  /* Sit on top, higher than the game board */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black background with opacity */
+
+  align-items: center;
+  justify-content: center;
+}
+
+.collision-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#gameoverModal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 2;
+  /* Sit on top, higher than the game board */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black background with opacity */
+
+  align-items: center;
+  justify-content: center;
+}
+
+.gameover-content {
+  background: #8e0e00;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1f1c18, #8e0e00);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1f1c18, #8e0e00);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+.gameover-content p {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}

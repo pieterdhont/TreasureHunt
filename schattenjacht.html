@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schattenjacht</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="settingsContainer">
+      <div class="settingsColumn">
+        <div class="form-control">
+          <label for="width">Width of the board:</label>
+          <input type="number" id="width" value="25" />
+        </div>
+        <div class="form-control">
+          <label for="height">Height of the board:</label>
+          <input type="number" id="height" value="25" />
+        </div>
+        <div class="form-control">
+          <label for="walls">Number of walls:</label>
+          <input type="number" id="walls" value="45" />
+        </div>
+        <div class="form-control">
+          <label for="treasures">Number of treasures:</label>
+          <input type="number" id="treasures" value="10" />
+        </div>
+        <div class="form-control">
+          <label for="lives">Number of lives:</label>
+          <input type="number" id="lives" value="3" />
+        </div>
+      </div>
+
+      <div class="settingsColumn">
+        <h3>
+          For a good playing experience, the number of walls should be about
+          10%-20% of the total grid size. And treasures about 5%-10%. Check the
+          boxes below to calculate this automatically.
+        </h3>
+        <h3>Use the arrow keys to navigate around. Press P to pause</h3>
+        <div class="form-control">
+          <label for="autoWalls">Auto-calculate walls:</label>
+          <input type="checkbox" id="autoWalls" />
+        </div>
+        <div class="form-control">
+          <label for="autoTreasures">Auto-calculate treasures:</label>
+          <input type="checkbox" id="autoTreasures" />
+        </div>
+        <div class="form-control">
+          <label for="enemySpeed">Enemy Speed:</label>
+          <select id="enemySpeed">
+            <option value="slow">Slow</option>
+            <option value="medium" selected>Medium</option>
+            <option value="fast">Fast</option>
+            <option value="nightmare">Nightmare</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="settingsColumn">
+        <div id="statusContainer">
+          <button id="startButton">(Re) Start the game</button>
+          <button id="pauseButton">Pause/Resume</button>
+          <div id="treasure-counter">Collected Treasures: 0</div>
+          <div id="lives-counter">Lives: 3</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gameboard" tabindex="-1"></div>
+
+    <div id="victoryModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p class="animate__animated animate__tada">
+          Congratulations! You've collected all the treasures!
+        </p>
+        <button id="restartButton">Restart</button>
+      </div>
+    </div>
+
+    <div id="collisionModal" class="modal">
+      <div class="collision-content">
+        <p>Oh no! You've been caught! Restarting position...</p>
+      </div>
+    </div>
+
+    <div id="gameoverModal" class="modal">
+      <div class="gameover-content">
+        <span class="close">&times;</span>
+        <p class="animate__animated animate__backOutDown">
+          Game Over! You've lost all your lives!
+        </p>
+        <button id="restartButton2">Restart</button>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
