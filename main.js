@@ -72,12 +72,12 @@ function setupKeyboardControls(game) {
 
         // If the 'P' key is pressed, toggle the pause state
         if (event.key === 'p' || event.key === 'P') {
-            game.togglePause(); // Implement this method in your game class
-            return; // Don't proceed further if the game is paused or unpaused
+            game.togglePause(); 
+            return; 
         }
         const currentTime = Date.now();
         if (currentTime - lastMoveTime < moveCooldown) {
-            return; // Exit if the cooldown period hasn't passed
+            return; 
         }
         lastMoveTime = currentTime; // Update the last move time
 
@@ -87,22 +87,22 @@ function setupKeyboardControls(game) {
         let moveMade = false;
         switch (event.key) {
             case 'ArrowUp':
-                event.preventDefault(); // Prevent the default action (scrolling up)
+                event.preventDefault(); 
                 game.moveHunter(0, -1);
                 moveMade = true;
                 break;
             case 'ArrowDown':
-                event.preventDefault(); // Prevent the default action (scrolling down)
+                event.preventDefault(); 
                 game.moveHunter(0, 1);
                 moveMade = true;
                 break;
             case 'ArrowLeft':
-                event.preventDefault(); // Prevent the default action (scrolling left)
+                event.preventDefault(); 
                 game.moveHunter(-1, 0);
                 moveMade = true;
                 break;
             case 'ArrowRight':
-                event.preventDefault(); // Prevent the default action (scrolling right)
+                event.preventDefault(); 
                 game.moveHunter(1, 0);
                 moveMade = true;
                 break;
